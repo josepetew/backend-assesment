@@ -44,13 +44,13 @@ npm i
 Then, make sure that Redis and PostgreSQL are running:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Apply any database migrations:
 
 ```bash
-npm run db:migrate
+npm run db:migrate-dev
 ```
 
 Optional, Seed the database

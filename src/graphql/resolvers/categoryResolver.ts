@@ -9,7 +9,7 @@ interface IOrderBy {
 export const categoryResolver: Resolvers = {
   Query: {
     categories: async (_, args, contextValue) => {
-      let orderBy: IOrderBy = { title: Sort.Desc };
+      let orderBy: IOrderBy = { title: Sort.Asc };
 
       if (args.orderBy?.popularity) {
         orderBy = {
