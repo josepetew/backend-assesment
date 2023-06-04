@@ -13,6 +13,7 @@ type Category {
   id: ID!
   title: String!
   slug: String!
+  products: [Product!]!
   createdAt: String!
 }
 
