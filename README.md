@@ -68,7 +68,7 @@ npm run dev
 ### Running in Docker (Easiest)
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
 
 Optional, Seed the database
