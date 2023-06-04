@@ -15,5 +15,9 @@ input CategoriesOrderBy {
 }
 
 type Query {
-  categories(offset: Int, limit: Int): [Category!]!
+  categories(offset: Int, limit: Int, orderBy: CategoriesOrderBy): [Category!]!
+}
+
+type Mutation {
+  createCategory(title: String!): Category!
 }

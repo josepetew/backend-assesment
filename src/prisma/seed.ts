@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 async function main() {
   const furniture = await prisma.category.create({
     data: {
-      title: "test",
-      slug: "test",
+      title: "Furniture",
+      slug: "furniture",
     },
   });
   const art = await prisma.category.create({
