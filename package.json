@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "start": "node dist/app.js",
-    "start:prod": "prisma migrate deploy && npm start",
-    "db:migrate": "prisma migrate dev",
+    "start:prod": "npm run db:migrate-deploy && npm start",
+    "db:migrate-dev": "prisma migrate dev",
+    "db:migrate-deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
     "dev": "npm run generate:types && nodemon -r tsconfig-paths/register src/app.ts",
     "build": "npm run generate:types && npm run lint && tsc && tsc-alias",
