@@ -9,11 +9,24 @@ interface IOrderBy {
 export const categoryResolver: Resolvers = {
   Query: {
     categories: async (_, args, contextValue) => {
-      const orderBy: IOrderBy = { title: Sort.Desc };
+      let orderBy: IOrderBy = { title: Sort.Desc };
+
+      if (args.orderBy?.popularity) {
+        orderBy = {
+          products: {
+            _count: args.orderBy?.popularity,
+          },
+        };
+      } else if (args.orderBy?.title) {
+        orderBy = { title: args.orderBy.title };
+      }
 
       return await contextValue.prisma.category.findMany({
         take: args.limit || 10,
         skip: args.offset || 0,
+        include: {
+          products: true,
+        },
         orderBy,
       });
     },
