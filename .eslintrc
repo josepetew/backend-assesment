@@ -3,7 +3,5 @@
   "extends": ["plugin:@typescript-eslint/recommended"],
   "parserOptions": { "ecmaVersion": 2020, "sourceType": "module" },
   "ignorePatterns": [ "**/generated*.ts"],
-  "rules": {
-    "@typescript-eslint/ban-types": "off"
-  }
+  "rules": {}
 }
