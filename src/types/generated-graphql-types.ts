@@ -36,6 +36,7 @@ export type Query = {
 export type QueryCategoriesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<CategoriesOrderBy>;
 };
 
 export enum Sort {
