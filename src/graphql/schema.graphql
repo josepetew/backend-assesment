@@ -1,0 +1,19 @@
+type Category {
+  id: ID!
+  title: String!
+  slug: String!
+  createdAt: String!
+}
+
+enum Sort {
+  asc
+  desc
+}
+
+input CategoriesOrderBy {
+  title: Sort
+}
+
+type Query {
+  categories(offset: Int, limit: Int): [Category!]!
+}

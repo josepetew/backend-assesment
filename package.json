@@ -1,0 +1,50 @@
+{
+  "name": "whoppah-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "start:prod": "prisma migrate deploy && npm start",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "dev": "npm run generate:types && nodemon -r tsconfig-paths/register src/app.ts",
+    "build": "npm run generate:types && tsc && tsc-alias",
+    "generate:types": "graphql-codegen"
+  },
+  "prisma": {
+    "seed": "ts-node src/prisma/seed.ts",
+    "schema": "src/prisma/schema.prisma"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-resolvers": "^4.0.0",
+    "@types/dotenv-safe": "^8.1.2",
+    "@types/koa": "^2.13.6",
+    "@types/koa__cors": "^4.0.0",
+    "@types/koa__router": "^12.0.0",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/node": "^20.2.5",
+    "nodemon": "^2.0.22",
+    "prisma": "^4.15.0",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.6",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.7.1",
+    "@as-integrations/koa": "^1.0.0",
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
+    "@prisma/client": "^4.15.0",
+    "dotenv-safe": "^8.2.0",
+    "graphql": "^16.6.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.0"
+  }
+}
