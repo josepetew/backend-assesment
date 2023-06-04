@@ -31,7 +31,15 @@ export const productResolver: Resolvers = {
         },
         include: { category: true },
       });
+      contextValue.pubsub.publish("PRODUCT_ADDED", { productAdded: product });
       return product;
+    },
+  },
+  Subscription: {
+    productAdded: {
+      subscribe: (_, __, contextValue) => {
+        return contextValue.pubsub.asyncIterator(["PRODUCT_ADDED"]);
+      },
     },
   },
 };

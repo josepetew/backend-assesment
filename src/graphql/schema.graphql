@@ -1,3 +1,14 @@
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+  inheritMaxAge: Boolean
+) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
 type Category {
   id: ID!
   title: String!
@@ -34,16 +45,20 @@ input ProductFilterBy {
 
 type Query {
   categories(offset: Int, limit: Int, orderBy: CategoriesOrderBy): [Category!]!
-
+    @cacheControl(maxAge: 30)
   products(
     offset: Int
     limit: Int
     orderBy: ProductsOrderBy
     filterBy: ProductFilterBy
-  ): [Product!]!
+  ): [Product!]! @cacheControl(maxAge: 30)
 }
 
 type Mutation {
   createCategory(title: String!): Category!
   createProduct(title: String!, price: Float!, categoryId: Int!): Product!
+}
+
+type Subscription {
+  productAdded: Product!
 }
