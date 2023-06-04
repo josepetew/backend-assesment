@@ -12,4 +12,5 @@ export default {
   env: env.NODE_ENV,
   port: env.PORT,
   databaseUrl: env.DATABASE_URL,
+  redisUrl: env.REDIS_URL,
 };

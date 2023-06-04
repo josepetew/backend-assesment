@@ -1,3 +1,4 @@
 import { categoryResolver } from "./categoryResolver";
+import { productResolver } from "./productResolver";
 
-export const resolvers = [categoryResolver];
+export const resolvers = [categoryResolver, productResolver];

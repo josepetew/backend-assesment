@@ -1,8 +1,28 @@
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+  inheritMaxAge: Boolean
+) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
 type Category {
   id: ID!
   title: String!
   slug: String!
   createdAt: String!
+}
+
+type Product {
+  id: ID!
+  title: String!
+  slug: String!
+  price: Float!
+  createdAt: String!
+  category: Category!
 }
 
 enum Sort {
@@ -12,12 +32,33 @@ enum Sort {
 
 input CategoriesOrderBy {
   title: Sort
+  popularity: Sort
+}
+
+input ProductsOrderBy {
+  createdAt: Sort
+}
+
+input ProductFilterBy {
+  categoryId: ID!
 }
 
 type Query {
   categories(offset: Int, limit: Int, orderBy: CategoriesOrderBy): [Category!]!
+    @cacheControl(maxAge: 30)
+  products(
+    offset: Int
+    limit: Int
+    orderBy: ProductsOrderBy
+    filterBy: ProductFilterBy
+  ): [Product!]! @cacheControl(maxAge: 30)
 }
 
 type Mutation {
   createCategory(title: String!): Category!
+  createProduct(title: String!, price: Float!, categoryId: Int!): Product!
+}
+
+type Subscription {
+  productAdded: Product!
 }
